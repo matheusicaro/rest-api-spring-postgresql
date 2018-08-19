@@ -5,9 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.matheusicaro.course.fullstack.domain.Category;
 
-
-
 @Repository
-public interface CategoryRespository extends JpaRepository<Category, Integer>{
-	
+public interface CategoryRespository extends JpaRepository<Category, Integer> {
+
 }

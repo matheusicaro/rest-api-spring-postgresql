@@ -10,13 +10,12 @@ import com.matheusicaro.course.fullstack.repositories.CategoryRespository;
 
 @Service
 public class CategoryService {
-	
+
 	@Autowired
 	private CategoryRespository repository;
-	
-	
-	public Category findById (Integer id) {
-		
+
+	public Category findById(Integer id) {
+
 		Optional<Category> category = repository.findById(id);
 		return category.orElse(null);
 	}
