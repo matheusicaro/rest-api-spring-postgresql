@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
-@Table(name="pro_PRODUCT")
+@Table(name="_PRODUCT")
 public class Product implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
