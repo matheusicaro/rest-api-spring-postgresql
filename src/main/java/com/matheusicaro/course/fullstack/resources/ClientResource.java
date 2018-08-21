@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.matheusicaro.course.fullstack.domain.Category;
-import com.matheusicaro.course.fullstack.services.CategoryService;
-
+import com.matheusicaro.course.fullstack.domain.Client;
+import com.matheusicaro.course.fullstack.services.ClientService;
 
 @RestController()
-@RequestMapping(path="/categories")
-public class CategoryResources {
+@RequestMapping(path="/clients")public class ClientResource {
 
 	@Autowired
-	CategoryService service;
+	ClientService service;
+	
 	
 	@RequestMapping(value="{Id}", method=RequestMethod.GET)
-	public ResponseEntity<?> findById (@PathVariable Integer Id) {
+	public ResponseEntity<?> findClientById (@PathVariable Integer Id) {
 		
-		Category category = service.findById(Id);
-		return ResponseEntity.ok().body(category);
+		Client client = service.findClientById(Id);
+		return ResponseEntity.ok().body(client);
+		
 	}
 }

@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.matheusicaro.course.fullstack.enums.ClientType;
 
 
@@ -28,16 +29,17 @@ public class Client implements Serializable{
 	private Integer id;
 	private String name;
 	private String email;
-	private String CPF_CNPJ;
+	private String cpf_cnpj;
 	private Integer type;
-	
-	@OneToMany(mappedBy = "client")
-	private List<HouseAddress> houseAndress = new ArrayList<>();
 	
 	@ElementCollection
 	@CollectionTable(name="_PHONE")
 	private Set<String> phones = new HashSet<>();
-
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "client")
+	private List<HouseAddress> houseAndress = new ArrayList<>();
+	
 	public Client() {
 		
 	}
@@ -47,7 +49,7 @@ public class Client implements Serializable{
 		this.id = id;
 		this.name = name;
 		this.email = email;
-		CPF_CNPJ = cPF_CNPJ;
+		cpf_cnpj = cPF_CNPJ;
 		this.type = type.getCode();
 	}
 
@@ -76,11 +78,11 @@ public class Client implements Serializable{
 	}
 
 	public String getCPF_CNPJ() {
-		return CPF_CNPJ;
+		return cpf_cnpj;
 	}
 
 	public void setCPF_CNPJ(String cPF_CNPJ) {
-		CPF_CNPJ = cPF_CNPJ;
+		cpf_cnpj = cPF_CNPJ;
 	}
 
 	public ClientType getType() {
