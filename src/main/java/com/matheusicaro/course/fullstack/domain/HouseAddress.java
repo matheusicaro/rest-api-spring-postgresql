@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="_HOUSE_ANDRESS")
-public class HouseAndress implements Serializable{
+public class HouseAddress implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -27,18 +27,18 @@ public class HouseAndress implements Serializable{
 	private String cep;
 	
 	@ManyToOne
-	@JoinColumn(name = "city_id")
-	private City city;
-	
-	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Client client;
 
-	public HouseAndress() {
+	@ManyToOne
+	@JoinColumn(name = "city_id")
+	private City city;
+		
+	public HouseAddress() {
 	
 	}
-	public HouseAndress(Integer id, String street, String streetNumber, String complement, String district, String cep,
-			City city, Client client) {
+	public HouseAddress(Integer id, String street, String streetNumber, String complement, String district, String cep,
+			Client client, City city) {
 		super();
 		this.id = id;
 		this.street = street;
@@ -46,8 +46,9 @@ public class HouseAndress implements Serializable{
 		this.complement = complement;
 		this.district = district;
 		this.cep = cep;
-		this.city = city;
 		this.client = client;
+		this.setCity(city);
+
 	}
 	
 	public Integer getId() {
@@ -113,7 +114,7 @@ public class HouseAndress implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		HouseAndress other = (HouseAndress) obj;
+		HouseAddress other = (HouseAddress) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -121,7 +122,5 @@ public class HouseAndress implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
 	
 }

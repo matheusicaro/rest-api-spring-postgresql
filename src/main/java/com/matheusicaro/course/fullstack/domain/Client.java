@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,27 +31,24 @@ public class Client implements Serializable{
 	private String CPF_CNPJ;
 	private Integer type;
 	
-	@OneToMany()
-	@JoinColumn(name = "client_id")
-	private List<HouseAndress> houseAndress = new ArrayList<>();
+	@OneToMany(mappedBy = "client")
+	private List<HouseAddress> houseAndress = new ArrayList<>();
 	
 	@ElementCollection
-	@CollectionTable(name="PHONE")
+	@CollectionTable(name="_PHONE")
 	private Set<String> phones = new HashSet<>();
 
 	public Client() {
 		
 	}
 	
-	public Client(Integer id, String name, String email, String cPF_CNPJ, Integer type,
-			List<HouseAndress> houseAndress) {
+	public Client(Integer id, String name, String email, String cPF_CNPJ, ClientType type) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		CPF_CNPJ = cPF_CNPJ;
-		this.type = type;
-		this.houseAndress = houseAndress;
+		this.type = type.getCode();
 	}
 
 	public Integer getId() {
@@ -95,14 +91,46 @@ public class Client implements Serializable{
 		this.type = type.getCode();
 	}
 
-	public List<HouseAndress> getHouseAndress() {
+	public List<HouseAddress> getHouseAndress() {
 		return houseAndress;
 	}
 
-	public void setHouseAndress(List<HouseAndress> houseAndress) {
+	public void setHouseAndress(List<HouseAddress> houseAndress) {
 		this.houseAndress = houseAndress;
 	}
-	
+
+	public Set<String> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(Set<String> phones) {
+		this.phones = phones;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
 	
 	
 }
