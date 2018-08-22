@@ -1,6 +1,6 @@
 package com.matheusicaro.course.fullstack.enums;
 
-public enum ClientType {
+public enum ClientTypeENUM {
 
 	PESSOAFISICA(1, "Pessoa Física"), 
 	PESSOAJURIDICA(2, "Pessoa Jurídica");
@@ -8,7 +8,7 @@ public enum ClientType {
 	private int code;
 	private String description;
 
-	private ClientType(int code, String description) {
+	private ClientTypeENUM(int code, String description) {
 		this.code = code;
 		this.description = description;
 	}
@@ -21,13 +21,13 @@ public enum ClientType {
 		return description;
 	}
 
-	public static ClientType toEnum(Integer id) {
+	public static ClientTypeENUM toEnum(Integer id) {
 		
 		if(id == null)
 			return null;
 		
 		
-		for (ClientType enumTypeCode : ClientType.values()) {
+		for (ClientTypeENUM enumTypeCode : ClientTypeENUM.values()) {
 			
 			if(id.equals(enumTypeCode.getCode())) {
 				return enumTypeCode;

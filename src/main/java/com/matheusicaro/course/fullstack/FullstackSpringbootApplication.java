@@ -13,7 +13,7 @@ import com.matheusicaro.course.fullstack.domain.Client;
 import com.matheusicaro.course.fullstack.domain.HouseAddress;
 import com.matheusicaro.course.fullstack.domain.Product;
 import com.matheusicaro.course.fullstack.domain.State;
-import com.matheusicaro.course.fullstack.enums.ClientType;
+import com.matheusicaro.course.fullstack.enums.ClientTypeENUM;
 import com.matheusicaro.course.fullstack.repositories.CategoryRespository;
 import com.matheusicaro.course.fullstack.repositories.CityRepository;
 import com.matheusicaro.course.fullstack.repositories.ClientRepository;
@@ -74,7 +74,7 @@ public class FullstackSpringbootApplication implements CommandLineRunner{
 		stateRepository.saveAll(Arrays.asList(state_1, state_2));
 		cityRepository.saveAll(Arrays.asList(city_1, city_2, city_3));
 		
-		Client client_1 = new Client(null, "Maria Silva", "maria@gmail.com", "12345678910", ClientType.PESSOAFISICA);
+		Client client_1 = new Client(null, "Maria Silva", "maria@gmail.com", "12345678910", ClientTypeENUM.PESSOAFISICA);
 		
 		client_1.getPhones().addAll(Arrays.asList("27363323", "93838393"));
 		

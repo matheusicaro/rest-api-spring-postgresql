@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.matheusicaro.course.fullstack.enums.ClientType;
+import com.matheusicaro.course.fullstack.enums.ClientTypeENUM;
 
 
 @Entity
@@ -40,11 +40,14 @@ public class Client implements Serializable{
 	@OneToMany(mappedBy = "client")
 	private List<HouseAddress> houseAndress = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders = new ArrayList<>();
+	
 	public Client() {
 		
 	}
 	
-	public Client(Integer id, String name, String email, String cPF_CNPJ, ClientType type) {
+	public Client(Integer id, String name, String email, String cPF_CNPJ, ClientTypeENUM type) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -85,11 +88,11 @@ public class Client implements Serializable{
 		cpf_cnpj = cPF_CNPJ;
 	}
 
-	public ClientType getType() {
-		return ClientType.toEnum(type);
+	public ClientTypeENUM getType() {
+		return ClientTypeENUM.toEnum(type);
 	}
 
-	public void setType(ClientType type) {
+	public void setType(ClientTypeENUM type) {
 		this.type = type.getCode();
 	}
 
@@ -107,6 +110,14 @@ public class Client implements Serializable{
 
 	public void setPhones(Set<String> phones) {
 		this.phones = phones;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 	@Override
