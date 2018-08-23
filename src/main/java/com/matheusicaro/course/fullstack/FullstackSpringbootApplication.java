@@ -1,5 +1,6 @@
 package com.matheusicaro.course.fullstack;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +12,20 @@ import com.matheusicaro.course.fullstack.domain.Category;
 import com.matheusicaro.course.fullstack.domain.City;
 import com.matheusicaro.course.fullstack.domain.Client;
 import com.matheusicaro.course.fullstack.domain.HouseAddress;
+import com.matheusicaro.course.fullstack.domain.Order;
+import com.matheusicaro.course.fullstack.domain.Payment;
+import com.matheusicaro.course.fullstack.domain.PaymentForCart;
+import com.matheusicaro.course.fullstack.domain.PaymentForTicket;
 import com.matheusicaro.course.fullstack.domain.Product;
 import com.matheusicaro.course.fullstack.domain.State;
 import com.matheusicaro.course.fullstack.enums.ClientTypeENUM;
+import com.matheusicaro.course.fullstack.enums.PaymentOptionENUM;
 import com.matheusicaro.course.fullstack.repositories.CategoryRespository;
 import com.matheusicaro.course.fullstack.repositories.CityRepository;
 import com.matheusicaro.course.fullstack.repositories.ClientRepository;
 import com.matheusicaro.course.fullstack.repositories.HouseAddressRepository;
+import com.matheusicaro.course.fullstack.repositories.OrderRespository;
+import com.matheusicaro.course.fullstack.repositories.PaymentRespository;
 import com.matheusicaro.course.fullstack.repositories.ProductRepository;
 import com.matheusicaro.course.fullstack.repositories.StateRepository;
 
@@ -36,6 +44,10 @@ public class FullstackSpringbootApplication implements CommandLineRunner{
 	private ClientRepository clientRepository;
 	@Autowired
 	private HouseAddressRepository addressRepository;
+	@Autowired
+	private PaymentRespository paymentRespository;
+	@Autowired
+	private OrderRespository orderRespository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(FullstackSpringbootApplication.class, args);
@@ -85,6 +97,22 @@ public class FullstackSpringbootApplication implements CommandLineRunner{
 		
 		clientRepository.saveAll(Arrays.asList(client_1));
 		addressRepository.saveAll(Arrays.asList(address_1, address_2));		
+		
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy HH:MM");
+
+		Order order_1 = new Order (null, dateFormatter.parse("23/08/2018 12:00"), client_1, address_1);
+		Order order_2 = new Order (null, dateFormatter.parse("23/08/2018 00:00"), client_1, address_2);
+		
+		Payment payment_1 = new PaymentForCart(null, order_1, PaymentOptionENUM.APPROVED, 6);
+		Payment payment_2 = new PaymentForTicket(null, order_2, PaymentOptionENUM.PENDING, dateFormatter.parse("25/08/2018 00:00"), null);
+		
+		order_1.setPayment(payment_1);
+		order_2.setPayment(payment_2);
+		
+		client_1.getOrders().addAll(Arrays.asList(order_1, order_2));
+		
+		orderRespository.saveAll(Arrays.asList(order_1, order_2));
+		paymentRespository.saveAll(Arrays.asList(payment_1, payment_2));
 
 	}
 }

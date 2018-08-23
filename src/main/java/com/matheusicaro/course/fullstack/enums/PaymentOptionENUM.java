@@ -3,8 +3,8 @@ package com.matheusicaro.course.fullstack.enums;
 public enum PaymentOptionENUM {
 
 	PENDING(1, "Pending"), 
-	APPROVED(1, "Approved"), 
-	CANCELED(1, "Canceled");
+	APPROVED(2, "Approved"), 
+	CANCELED(3, "Canceled");
 	
 	private int code;
 	private String description;

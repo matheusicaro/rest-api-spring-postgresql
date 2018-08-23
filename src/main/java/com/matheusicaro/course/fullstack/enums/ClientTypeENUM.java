@@ -21,20 +21,20 @@ public enum ClientTypeENUM {
 		return description;
 	}
 
-	public static ClientTypeENUM toEnum(Integer id) {
+	public static ClientTypeENUM toEnum(Integer code) {
 		
-		if(id == null)
+		if(code == null)
 			return null;
 		
 		
 		for (ClientTypeENUM enumTypeCode : ClientTypeENUM.values()) {
 			
-			if(id.equals(enumTypeCode.getCode())) {
+			if(code.equals(enumTypeCode.getCode())) {
 				return enumTypeCode;
 			}
 			
 		}
 
-		throw new IllegalArgumentException("Id inválido: " + id);
+		throw new IllegalArgumentException("Id inválido: " + code);
 	}
 }

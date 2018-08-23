@@ -11,18 +11,20 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.matheusicaro.course.fullstack.enums.PaymentOptionENUM;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@Table(name="_PAYMENT")
 public class Payment implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private PaymentOptionENUM paymentOption;
+	private Integer paymentOption;
 	
 	
 	@OneToOne
@@ -37,7 +39,7 @@ public class Payment implements Serializable{
 	public Payment(Integer id, PaymentOptionENUM paymentOption, Order order) {
 		super();
 		this.id = id;
-		this.paymentOption = paymentOption;
+		this.paymentOption = paymentOption.getCode();
 		this.order = order;
 	}
 
@@ -50,10 +52,10 @@ public class Payment implements Serializable{
 	}
 
 	public PaymentOptionENUM getPaymentOption() {
-		return paymentOption;
+		return PaymentOptionENUM.toEnum(paymentOption);
 	}
 
-	public void setPaymentOption(PaymentOptionENUM paymentOption) {
+	public void setPaymentOption(Integer paymentOption) {
 		this.paymentOption = paymentOption;
 	}
 

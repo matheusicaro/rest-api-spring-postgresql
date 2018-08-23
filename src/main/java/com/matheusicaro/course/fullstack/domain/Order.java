@@ -11,8 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="_ORDER")
 public class Order implements Serializable{
 	private static final long serialVersionUID = 1L;
 			
@@ -35,12 +37,11 @@ public class Order implements Serializable{
 	public Order() {
 
 	}
-	public Order(Integer id, Date orderDate, Client client, HouseAddress houseAddress, Payment payment) {
+	public Order(Integer id, Date orderDate, Client client, HouseAddress houseAddress) {
 		super();
 		this.id = id;
 		this.orderDate = orderDate;
 		this.client = client;
-		this.payment = payment;
 		this.houseAddress = houseAddress;
 	}
 
