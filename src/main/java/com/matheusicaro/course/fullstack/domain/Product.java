@@ -2,7 +2,9 @@ package com.matheusicaro.course.fullstack.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -27,7 +30,8 @@ public class Product implements Serializable{
 	private String name;
 	private Double price;
 	
-
+	@OneToMany(mappedBy = "id_OrderItemPK.product")
+	private Set<OrderItem> orderItems = new HashSet<>();
 	
 	@JsonBackReference
 	@ManyToMany
@@ -38,8 +42,6 @@ public class Product implements Serializable{
 			)
 	private List<Category> categories = new ArrayList<>();
 	
-	
-	
 	public Product() {
 
 	}
@@ -49,6 +51,15 @@ public class Product implements Serializable{
 		this.name = name;
 		this.price = price;
 	}
+	
+	public List<Order> getOrder() {
+		List<Order> OrderList = new ArrayList<>();
+		for (OrderItem item : orderItems) {
+			OrderList.add(item.getOrder());
+		}
+		return OrderList;
+	}
+	
 	public Integer getId() {
 		return Id;
 	}
@@ -69,6 +80,12 @@ public class Product implements Serializable{
 	}
 	public List<Category> getCategories() {
 		return categories;
+	}
+	public Set<OrderItem> getOrderItems() {
+		return orderItems;
+	}
+	public void setOrderItems(Set<OrderItem> orderItems) {
+		this.orderItems = orderItems;
 	}
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;

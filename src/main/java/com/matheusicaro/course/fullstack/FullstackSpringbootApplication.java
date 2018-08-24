@@ -13,6 +13,7 @@ import com.matheusicaro.course.fullstack.domain.City;
 import com.matheusicaro.course.fullstack.domain.Client;
 import com.matheusicaro.course.fullstack.domain.HouseAddress;
 import com.matheusicaro.course.fullstack.domain.Order;
+import com.matheusicaro.course.fullstack.domain.OrderItem;
 import com.matheusicaro.course.fullstack.domain.Payment;
 import com.matheusicaro.course.fullstack.domain.PaymentForCart;
 import com.matheusicaro.course.fullstack.domain.PaymentForTicket;
@@ -24,6 +25,7 @@ import com.matheusicaro.course.fullstack.repositories.CategoryRespository;
 import com.matheusicaro.course.fullstack.repositories.CityRepository;
 import com.matheusicaro.course.fullstack.repositories.ClientRepository;
 import com.matheusicaro.course.fullstack.repositories.HouseAddressRepository;
+import com.matheusicaro.course.fullstack.repositories.OrderItemRespository;
 import com.matheusicaro.course.fullstack.repositories.OrderRespository;
 import com.matheusicaro.course.fullstack.repositories.PaymentRespository;
 import com.matheusicaro.course.fullstack.repositories.ProductRepository;
@@ -48,6 +50,9 @@ public class FullstackSpringbootApplication implements CommandLineRunner{
 	private PaymentRespository paymentRespository;
 	@Autowired
 	private OrderRespository orderRespository;
+	@Autowired
+	private OrderItemRespository orderItemRespository;
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(FullstackSpringbootApplication.class, args);
@@ -113,6 +118,19 @@ public class FullstackSpringbootApplication implements CommandLineRunner{
 		
 		orderRespository.saveAll(Arrays.asList(order_1, order_2));
 		paymentRespository.saveAll(Arrays.asList(payment_1, payment_2));
+		
+		OrderItem orderItem_1 = new OrderItem(order_1, product_1, 0.00, 1, 2000.00);
+		OrderItem orderItem_2 = new OrderItem(order_1, product_3, 0.00, 2, 80.00);
+		OrderItem orderItem_3 = new OrderItem(order_2, product_2, 100.00, 1, 800.00);
+
+		order_1.getOrderItems().addAll(Arrays.asList(orderItem_1, orderItem_2));
+		order_2.getOrderItems().addAll(Arrays.asList(orderItem_3));
+		
+		product_1.getOrderItems().addAll(Arrays.asList(orderItem_1));
+		product_2.getOrderItems().addAll(Arrays.asList(orderItem_3));
+		product_3.getOrderItems().addAll(Arrays.asList(orderItem_2));
+		
+		orderItemRespository.saveAll(Arrays.asList(orderItem_1, orderItem_2, orderItem_3));	
 
 	}
 }
