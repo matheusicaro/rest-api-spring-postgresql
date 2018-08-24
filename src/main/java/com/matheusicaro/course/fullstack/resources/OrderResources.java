@@ -7,22 +7,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.matheusicaro.course.fullstack.domain.Client;
-import com.matheusicaro.course.fullstack.services.ClientService;
+import com.matheusicaro.course.fullstack.domain.Order;
+import com.matheusicaro.course.fullstack.services.OrderService;
 
 @RestController()
-@RequestMapping(path="/clients")
-public class ClientResource {
-
-	@Autowired
-	ClientService service;
+@RequestMapping(path="/orders")
+public class OrderResources {
 	
+	@Autowired
+	OrderService service;
 	
 	@RequestMapping(value="{Id}", method=RequestMethod.GET)
-	public ResponseEntity<?> findClientById (@PathVariable Integer Id) {
+	public ResponseEntity<?> findById (@PathVariable Integer Id) {
 		
-		Client client = service.findClientById(Id);
-		return ResponseEntity.ok().body(client);
-		
+		Order order = service.findById(Id);
+		return ResponseEntity.ok().body(order);
 	}
 }

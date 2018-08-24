@@ -109,7 +109,7 @@ public class FullstackSpringbootApplication implements CommandLineRunner{
 		Order order_2 = new Order (null, dateFormatter.parse("23/08/2018 00:00"), client_1, address_2);
 		
 		Payment payment_1 = new PaymentForCart(null, order_1, PaymentOptionENUM.APPROVED, 6);
-		Payment payment_2 = new PaymentForTicket(null, order_2, PaymentOptionENUM.PENDING, dateFormatter.parse("25/08/2018 00:00"), null);
+		Payment payment_2 = new PaymentForTicket(null, dateFormatter.parse("25/08/2018 00:00"), order_2, PaymentOptionENUM.PENDING, null);
 		
 		order_1.setPayment(payment_1);
 		order_2.setPayment(payment_2);
@@ -130,7 +130,9 @@ public class FullstackSpringbootApplication implements CommandLineRunner{
 		product_2.getOrderItems().addAll(Arrays.asList(orderItem_3));
 		product_3.getOrderItems().addAll(Arrays.asList(orderItem_2));
 		
-		orderItemRespository.saveAll(Arrays.asList(orderItem_1, orderItem_2, orderItem_3));	
+		orderItemRespository.saveAll(Arrays.asList(orderItem_1, orderItem_2, orderItem_3));
+		
+		System.out.println("\n\n*** SUCCESS ***");
 
 	}
 }

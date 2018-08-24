@@ -13,6 +13,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.matheusicaro.course.fullstack.enums.PaymentOptionENUM;
 
 @Entity
@@ -25,8 +26,8 @@ public class Payment implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private Integer paymentOption;
-	
-	
+		
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "order_id")
 	@MapsId   		
@@ -91,9 +92,5 @@ public class Payment implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
+		
 }

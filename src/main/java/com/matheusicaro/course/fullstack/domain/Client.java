@@ -15,7 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.matheusicaro.course.fullstack.enums.ClientTypeENUM;
 
 
@@ -36,10 +36,10 @@ public class Client implements Serializable{
 	@CollectionTable(name="_PHONE")
 	private Set<String> phones = new HashSet<>();
 	
-	@JsonManagedReference
 	@OneToMany(mappedBy = "client")
 	private List<HouseAddress> houseAndress = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
 	

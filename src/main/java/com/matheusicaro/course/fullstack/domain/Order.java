@@ -16,6 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="_ORDER")
 public class Order implements Serializable{
@@ -24,8 +27,10 @@ public class Order implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private Date orderDate;
-				
+	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy="order") 
 	private Payment payment;
 	
@@ -58,7 +63,8 @@ public class Order implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
+	
+	@JsonIgnore
 	public Date getDate() {
 		return orderDate;
 	}
@@ -119,7 +125,4 @@ public class Order implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
 }

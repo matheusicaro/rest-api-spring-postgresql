@@ -5,20 +5,23 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.matheusicaro.course.fullstack.enums.PaymentOptionENUM;
 
 @Entity
 @Table(name="_PAYMENT_FOR_TICKET")
 public class PaymentForTicket extends Payment{
 	private static final long serialVersionUID = 1L;
-
+	
+	@JsonFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date expiredDate;
+	@JsonFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date paymentDate;
 	
 	public PaymentForTicket() {
 
 	}
-	public PaymentForTicket(Integer id, Order order, PaymentOptionENUM paymentOption, Date expiredDate, Date paymentDate) {
+	public PaymentForTicket(Integer id, Date paymentDate, Order order, PaymentOptionENUM paymentOption, Date expiredDate) {
 		super(id, paymentOption, order);
 		this.expiredDate = expiredDate;
 		this.paymentDate = paymentDate;

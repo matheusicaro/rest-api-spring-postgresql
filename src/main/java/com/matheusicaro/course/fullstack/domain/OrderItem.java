@@ -6,11 +6,14 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="_ORDER_ITEM")
 public class OrderItem implements Serializable{
 	private static final long serialVersionUID = 1L;
-
+	
+	@JsonIgnore
 	@EmbeddedId
 	private OrderItemPK id_OrderItemPK = new OrderItemPK();
 	
@@ -35,6 +38,7 @@ public class OrderItem implements Serializable{
 		return id_OrderItemPK.getProduct();
 	}
 	
+	@JsonIgnore
 	public Order getOrder() {
 		return id_OrderItemPK.getOrder();
 	}
