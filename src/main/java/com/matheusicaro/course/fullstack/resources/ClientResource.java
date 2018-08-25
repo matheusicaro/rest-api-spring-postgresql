@@ -25,4 +25,9 @@ public class ClientResource {
 		return ResponseEntity.ok().body(client);
 		
 	}
+	
+	@RequestMapping
+	public void insertClient() {
+		
+	}
 }
