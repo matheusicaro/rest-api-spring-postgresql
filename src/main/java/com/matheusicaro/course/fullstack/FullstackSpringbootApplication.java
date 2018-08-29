@@ -63,6 +63,11 @@ public class FullstackSpringbootApplication implements CommandLineRunner{
 		
 		Category category_1 = new Category(null, "informatic");
 		Category category_2 = new Category(null, "office");
+		Category category_3 = new Category(null, "Cama mesa e banho");
+		Category category_4 = new Category(null, "Eletrônicos");
+		Category category_5 = new Category(null, "Jardinagem");
+		Category category_6 = new Category(null, "Decoração");
+		Category category_7 = new Category(null, "Perfumaria");
 		
 		Product product_1 = new Product(null, "computer", 2000.00);
 		Product product_2 = new Product(null, "printer", 800.00);
@@ -75,7 +80,7 @@ public class FullstackSpringbootApplication implements CommandLineRunner{
 		product_2.getCategories().addAll(Arrays.asList(category_1, category_2));
 		product_3.getCategories().addAll(Arrays.asList(category_1));
 		
-		categoryRespository.saveAll(Arrays.asList(category_1, category_2));
+		categoryRespository.saveAll(Arrays.asList(category_1, category_2, category_3, category_4, category_5, category_6, category_7));
 		productRepository.saveAll(Arrays.asList(product_1, product_2, product_3));
 		
 		State state_1 = new State(null, "Minas Gerais");
