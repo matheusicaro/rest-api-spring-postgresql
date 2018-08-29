@@ -1,6 +1,7 @@
 package com.matheusicaro.course.fullstack.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.matheusicaro.course.fullstack.domain.Category;
+import com.matheusicaro.course.fullstack.dto.CategoryDTO;
 import com.matheusicaro.course.fullstack.services.CategoryService;
 
 
@@ -27,6 +29,13 @@ public class CategoryResources {
 		
 		Category category = service.findById(Id);
 		return ResponseEntity.ok().body(category);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<CategoryDTO>> findAll () {
+		
+		List<CategoryDTO> list = service.findAll();
+		return ResponseEntity.ok().body(list);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)

@@ -1,12 +1,15 @@
 package com.matheusicaro.course.fullstack.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.matheusicaro.course.fullstack.domain.Category;
+import com.matheusicaro.course.fullstack.dto.CategoryDTO;
 import com.matheusicaro.course.fullstack.repositories.CategoryRespository;
 import com.matheusicaro.course.fullstack.services.exceptions.DataIntegrityException;
 import com.matheusicaro.course.fullstack.services.exceptions.ObjectNotFoundException;
@@ -33,7 +36,7 @@ public class CategoryService {
 
 	public Category update(Category category) {
 		
-		findById(category.getId()); 				// check first category exists
+		findById(category.getId()); 
 		return repository.save(category);
 	}
 
@@ -46,5 +49,17 @@ public class CategoryService {
 			throw new DataIntegrityException("Can not delete a category that has products");
 		}
 	}
+	
+	public List<CategoryDTO> findAll () {
+		
+		List<Category> listCategories = repository.findAll();
+		
+		List<CategoryDTO> listDto = listCategories.stream()
+				.map( category -> new CategoryDTO(category))
+				.collect(Collectors.toList());
+		
+		return listDto;
+	}
+	
 	
 }
