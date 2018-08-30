@@ -16,7 +16,7 @@ import com.matheusicaro.course.fullstack.domain.AddressHouse;
 import com.matheusicaro.course.fullstack.domain.City;
 import com.matheusicaro.course.fullstack.domain.Client;
 import com.matheusicaro.course.fullstack.dto.ClientDTO;
-import com.matheusicaro.course.fullstack.dto.NewClientDTO;
+import com.matheusicaro.course.fullstack.dto.ClientNewDTO;
 import com.matheusicaro.course.fullstack.enums.ClientTypeENUM;
 import com.matheusicaro.course.fullstack.repositories.AddressHouseRepository;
 import com.matheusicaro.course.fullstack.repositories.ClientRepository;
@@ -66,7 +66,7 @@ public class ClientService {
 		return new Client(clientDTO.getId(), clientDTO.getName(), clientDTO.getEmail(), null, null);
 	}
 	
-	public Client fromDTO(NewClientDTO newClientDTO) {
+	public Client fromDTO(ClientNewDTO newClientDTO) {
 		
 		Client newClient = new Client(null, newClientDTO.getName(), newClientDTO.getEmail(), newClientDTO.getCpf_cnpj(), ClientTypeENUM.toEnum(newClientDTO.getType()))	;
 		City city = new City(newClientDTO.getCityId(), null, null);

@@ -2,27 +2,49 @@ package com.matheusicaro.course.fullstack.dto;
 
 import java.io.Serializable;
 
-public class NewClientDTO implements Serializable{
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.matheusicaro.course.fullstack.services.validation.ClientInsert;
+
+@ClientInsert
+public class ClientNewDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty(message="Name is required")
+	@Length(min=5, max=80, message="The size must be between 5 and 80 characters")
 	private String name;
+	
+	@NotEmpty(message="Name is required")
+	@Email(message="E-mail invalid")
 	private String email;
+	
+	@NotEmpty(message="Name is required")
 	private String cpf_cnpj;
+
 	private Integer type;
 	
+	@NotEmpty(message="Name is required")
 	private String phone_1;
 	private String phone_2;
 	private String phone_3;
-
+	
+	@NotEmpty(message="Name is required")
 	private String street;
+	
+	@NotEmpty(message="Name is required")
 	private String streetNumber;
 	private String complement;
 	private String district;
+	
+	@NotEmpty(message="Name is required")	
 	private String cep;
 	
 	private Integer cityId;
 	
-	public NewClientDTO() {
+	public ClientNewDTO() {
 
 	}
 	

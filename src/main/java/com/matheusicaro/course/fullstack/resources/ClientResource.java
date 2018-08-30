@@ -19,7 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.matheusicaro.course.fullstack.domain.Client;
 import com.matheusicaro.course.fullstack.dto.ClientDTO;
-import com.matheusicaro.course.fullstack.dto.NewClientDTO;
+import com.matheusicaro.course.fullstack.dto.ClientNewDTO;
 import com.matheusicaro.course.fullstack.services.ClientService;
 
 @RestController()
@@ -66,7 +66,7 @@ public class ClientResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert (@RequestBody NewClientDTO newClientDTO){
+	public ResponseEntity<Void> insert (@RequestBody ClientNewDTO newClientDTO){
 	
 		Client newClient = service.fromDTO(newClientDTO);
 		newClient = service.insert(newClient);
