@@ -40,7 +40,7 @@ public class Order implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "houseAddress_id")
-	private HouseAddress houseAddress;
+	private AddressHouse houseAddress;
 	
 	@OneToMany(mappedBy = "id_OrderItemPK.order")
 	private Set<OrderItem> orderItems = new HashSet<>();
@@ -48,7 +48,7 @@ public class Order implements Serializable{
 	public Order() {
 
 	}
-	public Order(Integer id, Date orderDate, Client client, HouseAddress houseAddress) {
+	public Order(Integer id, Date orderDate, Client client, AddressHouse houseAddress) {
 		super();
 		this.id = id;
 		this.orderDate = orderDate;
@@ -89,10 +89,10 @@ public class Order implements Serializable{
 		this.payment = payment;
 	}
 
-	public HouseAddress getHouseAddress() {
+	public AddressHouse getHouseAddress() {
 		return houseAddress;
 	}
-	public void setHouseAddress(HouseAddress houseAddress) {
+	public void setHouseAddress(AddressHouse houseAddress) {
 		this.houseAddress = houseAddress;
 	}
 	public Set<OrderItem> getOrderItems() {

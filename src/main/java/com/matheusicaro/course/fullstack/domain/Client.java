@@ -37,7 +37,7 @@ public class Client implements Serializable{
 	private Set<String> phones = new HashSet<>();
 	
 	@OneToMany(mappedBy = "client")
-	private List<HouseAddress> houseAndress = new ArrayList<>();
+	private List<AddressHouse> houseAndress = new ArrayList<>();
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
@@ -96,11 +96,11 @@ public class Client implements Serializable{
 		this.type = type.getCode();
 	}
 
-	public List<HouseAddress> getHouseAndress() {
+	public List<AddressHouse> getHouseAndress() {
 		return houseAndress;
 	}
 
-	public void setHouseAndress(List<HouseAddress> houseAndress) {
+	public void setHouseAndress(List<AddressHouse> houseAndress) {
 		this.houseAndress = houseAndress;
 	}
 

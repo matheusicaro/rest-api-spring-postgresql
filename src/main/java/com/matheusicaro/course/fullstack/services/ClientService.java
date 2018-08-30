@@ -10,12 +10,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.matheusicaro.course.fullstack.domain.AddressHouse;
 import com.matheusicaro.course.fullstack.domain.City;
 import com.matheusicaro.course.fullstack.domain.Client;
-import com.matheusicaro.course.fullstack.domain.HouseAddress;
 import com.matheusicaro.course.fullstack.dto.ClientDTO;
 import com.matheusicaro.course.fullstack.dto.NewClientDTO;
 import com.matheusicaro.course.fullstack.enums.ClientTypeENUM;
+import com.matheusicaro.course.fullstack.repositories.AddressHouseRepository;
 import com.matheusicaro.course.fullstack.repositories.ClientRepository;
 import com.matheusicaro.course.fullstack.services.exceptions.DataIntegrityException;
 import com.matheusicaro.course.fullstack.services.exceptions.ObjectNotFoundException;
@@ -26,6 +27,8 @@ public class ClientService {
 	@Autowired
 	ClientRepository repository;
 	
+	@Autowired
+	AddressHouseRepository addressHouseRepository;
 	public void delete(Integer id) {
 		
 		findById(id);
@@ -65,7 +68,7 @@ public class ClientService {
 		
 		Client newClient = new Client(null, newClientDTO.getName(), newClientDTO.getEmail(), newClientDTO.getCpf_cnpj(), ClientTypeENUM.toEnum(newClientDTO.getType()))	;
 		City city = new City(newClientDTO.getCityId(), null, null);
-		HouseAddress address = new HouseAddress(null, newClientDTO.getStreet(), newClientDTO.getStreetNumber(), newClientDTO.getComplement(), newClientDTO.getDistrict(),
+		AddressHouse address = new AddressHouse(null, newClientDTO.getStreet(), newClientDTO.getStreetNumber(), newClientDTO.getComplement(), newClientDTO.getDistrict(),
 				newClientDTO.getCep(), newClient, city);
 		
 		newClient.getHouseAndress().add(address);
@@ -80,9 +83,10 @@ public class ClientService {
 	}
 		
 	public Client insert(Client client) {
-
 		client.setId(null);
-		return repository.save(client);
+		client = repository.save(client);
+		addressHouseRepository.saveAll(client.getHouseAndress());
+		return client;
 	}
 	
 	private void updateData(Client newClient, Client client) {

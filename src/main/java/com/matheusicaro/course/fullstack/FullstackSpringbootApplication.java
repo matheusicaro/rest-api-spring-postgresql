@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.matheusicaro.course.fullstack.domain.Category;
 import com.matheusicaro.course.fullstack.domain.City;
 import com.matheusicaro.course.fullstack.domain.Client;
-import com.matheusicaro.course.fullstack.domain.HouseAddress;
+import com.matheusicaro.course.fullstack.domain.AddressHouse;
 import com.matheusicaro.course.fullstack.domain.Order;
 import com.matheusicaro.course.fullstack.domain.OrderItem;
 import com.matheusicaro.course.fullstack.domain.Payment;
@@ -24,7 +24,7 @@ import com.matheusicaro.course.fullstack.enums.PaymentOptionENUM;
 import com.matheusicaro.course.fullstack.repositories.CategoryRespository;
 import com.matheusicaro.course.fullstack.repositories.CityRepository;
 import com.matheusicaro.course.fullstack.repositories.ClientRepository;
-import com.matheusicaro.course.fullstack.repositories.HouseAddressRepository;
+import com.matheusicaro.course.fullstack.repositories.AddressHouseRepository;
 import com.matheusicaro.course.fullstack.repositories.OrderItemRespository;
 import com.matheusicaro.course.fullstack.repositories.OrderRespository;
 import com.matheusicaro.course.fullstack.repositories.PaymentRespository;
@@ -45,7 +45,7 @@ public class FullstackSpringbootApplication implements CommandLineRunner{
 	@Autowired
 	private ClientRepository clientRepository;
 	@Autowired
-	private HouseAddressRepository addressRepository;
+	private AddressHouseRepository addressRepository;
 	@Autowired
 	private PaymentRespository paymentRespository;
 	@Autowired
@@ -100,8 +100,8 @@ public class FullstackSpringbootApplication implements CommandLineRunner{
 		
 		client_1.getPhones().addAll(Arrays.asList("27363323", "93838393"));
 		
-		HouseAddress address_1 = new HouseAddress(null, "Rua Flores", "300", "Apto 303", "Jardim", "38220834", client_1, city_1);
-		HouseAddress address_2 = new HouseAddress(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", client_1, city_2);
+		AddressHouse address_1 = new AddressHouse(null, "Rua Flores", "300", "Apto 303", "Jardim", "38220834", client_1, city_1);
+		AddressHouse address_2 = new AddressHouse(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", client_1, city_2);
 		
 		client_1.getHouseAndress().addAll(Arrays.asList(address_1, address_2));
 		

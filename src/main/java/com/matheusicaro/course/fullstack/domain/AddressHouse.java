@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="_HOUSE_ANDRESS")
-public class HouseAddress implements Serializable{
+public class AddressHouse implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -37,10 +37,10 @@ public class HouseAddress implements Serializable{
 	@JoinColumn(name = "city_id")
 	private City city;
 		
-	public HouseAddress() {
+	public AddressHouse() {
 	
 	}
-	public HouseAddress(Integer id, String street, String streetNumber, String complement, String district, String cep,
+	public AddressHouse(Integer id, String street, String streetNumber, String complement, String district, String cep,
 			Client client, City city) {
 		super();
 		this.id = id;
@@ -117,7 +117,7 @@ public class HouseAddress implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		HouseAddress other = (HouseAddress) obj;
+		AddressHouse other = (AddressHouse) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
