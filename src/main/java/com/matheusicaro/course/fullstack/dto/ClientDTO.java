@@ -2,15 +2,16 @@ package com.matheusicaro.course.fullstack.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.matheusicaro.course.fullstack.domain.Category;
+import com.matheusicaro.course.fullstack.domain.Client;
 
-public class CategoryDTO implements Serializable{
+
+public class ClientDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
 	
 	private Integer id;
 	
@@ -18,16 +19,21 @@ public class CategoryDTO implements Serializable{
 	@Length(min=5, max=80, message="The size must be between 5 and 80 characters")
 	private String name;
 	
-	public CategoryDTO () {
-		
-	}
+	@NotEmpty(message="E-mail is required")
+	@Email(message="E-mail invalid")
+	private String email;
 	
-	public CategoryDTO (Category category) {
+	public ClientDTO() {
+	
+	}
 
-		this.id = category.getId();
-		this.name = category.getName();
+	public ClientDTO(Client client) {
+		super();
+		this.id = client.getId();
+		this.name = client.getName();
+		this.email = client.getEmail();
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -44,6 +50,15 @@ public class CategoryDTO implements Serializable{
 		this.name = name;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 
 
 }

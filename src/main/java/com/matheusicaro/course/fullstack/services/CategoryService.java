@@ -56,7 +56,6 @@ public class CategoryService {
 	public List<CategoryDTO> findAll () {
 		
 		List<Category> list = repository.findAll();
-		
 		List<CategoryDTO> listDto = list.stream()
 				.map( category -> new CategoryDTO(category))
 				.collect(Collectors.toList());
@@ -68,11 +67,14 @@ public class CategoryService {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		Page<Category> list = repository.findAll(pageRequest);
-		
 		Page<CategoryDTO> listDto = list.map( category -> new CategoryDTO(category));
 		
 		return listDto;
 		
+	}
+	
+	public Category fromDTO(CategoryDTO caregoriaDTO) {
+		return new Category(caregoriaDTO.getId(), caregoriaDTO.getName());
 	}
 	
 	

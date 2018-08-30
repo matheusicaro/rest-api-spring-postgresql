@@ -3,6 +3,8 @@ package com.matheusicaro.course.fullstack.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -48,12 +50,11 @@ public class CategoryResources {
 			@RequestParam(value="direction", defaultValue="ASC") String direction) {
 		
 		Page<CategoryDTO> listDto = service.findPage(page, linesPerPage, orderBy, direction);
-		
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insertCategory (@RequestBody Category category){
+	public ResponseEntity<Void> insert (@RequestBody Category category){
 		
 		Category categorySaved = service.insert(category);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{Id}").buildAndExpand(categorySaved.getId()).toUri();
@@ -61,14 +62,17 @@ public class CategoryResources {
 	}
 	
 	@RequestMapping(value= "/{Id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> updateCategory (@RequestBody Category category, @PathVariable Integer Id){
+	public ResponseEntity<Void> update (@Valid @RequestBody CategoryDTO categoryDTO, @PathVariable Integer Id){
+		
+		Category category = service.fromDTO(categoryDTO);
 		category.setId(Id);
 		category = service.update(category);
 		return ResponseEntity.noContent().build();
 	}	
 	
 	@RequestMapping(value= "/{Id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteCategory (@PathVariable Integer Id){
+	public ResponseEntity<Void> delete (@PathVariable Integer Id){
+		
 		service.delete(Id);
 		return ResponseEntity.noContent().build();
 	}	
