@@ -2,11 +2,15 @@ package com.matheusicaro.course.fullstack.resources.exceptions;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class StandardError implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int value;
 	private String message;
+	
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private Long timestamp;
 
 	public StandardError(int value, String message, Long timestamp) {
