@@ -42,7 +42,7 @@ public class ClientNewDTO implements Serializable{
 	@NotEmpty(message="Name is required")	
 	private String cep;
 	
-	private Integer cityId;
+	private Integer city;
 	
 	public ClientNewDTO() {
 
@@ -121,12 +121,12 @@ public class ClientNewDTO implements Serializable{
 		this.cep = cep;
 	}
 
-	public Integer getCityId() {
-		return cityId;
+	public Integer getCity() {
+		return city;
 	}
 
-	public void setCityId(Integer cityId) {
-		this.cityId = cityId;
+	public void setCity(Integer city) {
+		this.city = city;
 	}
 	
 

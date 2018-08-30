@@ -25,11 +25,11 @@ public class ClientInsertValidator implements ConstraintValidator<ClientInsert, 
 		
 		
 		if (clientNewDTO.getType().equals(ClientTypeENUM.PESSOAFISICA.getCode()) && !BR.isValidCPF(clientNewDTO.getCpf_cnpj())) {
-			list.add(new FieldMessage("cpfOuCnpj", "CPF Invalid"));
+			list.add(new FieldMessage("cpf_cnpj", "CPF Invalid"));
 		}
  		
 		if (clientNewDTO.getType().equals(ClientTypeENUM.PESSOAJURIDICA.getCode()) && !BR.isValidCNPJ(clientNewDTO.getCpf_cnpj())) {
-			list.add(new FieldMessage("cpfOuCnpj", "CNPJ Invalid"));
+			list.add(new FieldMessage("cpf_cnpj", "CNPJ Invalid"));
 		}
  		
  		for (FieldMessage error : list) {

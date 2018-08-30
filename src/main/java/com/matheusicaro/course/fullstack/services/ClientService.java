@@ -69,7 +69,7 @@ public class ClientService {
 	public Client fromDTO(ClientNewDTO newClientDTO) {
 		
 		Client newClient = new Client(null, newClientDTO.getName(), newClientDTO.getEmail(), newClientDTO.getCpf_cnpj(), ClientTypeENUM.toEnum(newClientDTO.getType()))	;
-		City city = new City(newClientDTO.getCityId(), null, null);
+		City city = new City(newClientDTO.getCity(), null, null);
 		AddressHouse address = new AddressHouse(null, newClientDTO.getStreet(), newClientDTO.getStreetNumber(), newClientDTO.getComplement(), newClientDTO.getDistrict(),
 				newClientDTO.getCep(), newClient, city);
 		
