@@ -3,6 +3,8 @@ package com.matheusicaro.course.fullstack.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -81,7 +83,8 @@ public class ClientService {
 		
 		return newClient;
 	}
-		
+	
+	@Transactional
 	public Client insert(Client client) {
 		client.setId(null);
 		client = repository.save(client);
