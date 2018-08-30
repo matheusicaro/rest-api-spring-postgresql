@@ -39,7 +39,7 @@ public class ClientService {
 			repository.deleteById(id);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Can not delete because Tabelas Relacionas");
+			throw new DataIntegrityException("Can not delete because request are opens");
 		}
 	}
 	
