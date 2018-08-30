@@ -22,27 +22,6 @@ public class ClientService {
 	@Autowired
 	ClientRepository repository;
 	
-	public Client findById (Integer id) {
-		
-		Optional<Client> client = repository.findById(id);
-		
-		return client.orElseThrow(() -> new ObjectNotFoundException(
-				"Não encontrado! " + "Id: " + id + ", Tipo: " + Client.class.getSimpleName()));
-	}
-	
-	public Client insert(Client client) {
-
-		client.setId(null);
-		return repository.save(client);
-	}
-
-	public Client update(Client client) {
-		
-		Client newClient = findById(client.getId());
-		updateData(newClient, client);
-		return repository.save(newClient);
-	}
-
 	public void delete(Integer id) {
 		
 		findById(id);
@@ -59,6 +38,14 @@ public class ClientService {
 		return repository.findAll();
 	}
 	
+	public Client findById (Integer id) {
+		
+		Optional<Client> client = repository.findById(id);
+		
+		return client.orElseThrow(() -> new ObjectNotFoundException(
+				"Não encontrado! " + "Id: " + id + ", Tipo: " + Client.class.getSimpleName()));
+	}
+	
 	public Page<Client> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
@@ -69,10 +56,24 @@ public class ClientService {
 	public Client fromDTO(ClientDTO clientDTO) {
 		return new Client(clientDTO.getId(), clientDTO.getName(), clientDTO.getEmail(), null, null);
 	}
+		
+	public Client insert(Client client) {
+
+		client.setId(null);
+		return repository.save(client);
+	}
 	
 	private void updateData(Client newClient, Client client) {
 		newClient.setName(client.getName());
 		newClient.setEmail(client.getEmail());
 	}
+
+	public Client update(Client client) {
+		
+		Client newClient = findById(client.getId());
+		updateData(newClient, client);
+		return repository.save(newClient);
+	}
+
 	
 }

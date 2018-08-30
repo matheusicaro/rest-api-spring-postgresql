@@ -28,6 +28,13 @@ public class CategoryResources {
 	@Autowired
 	CategoryService service;
 	
+	@RequestMapping(value= "/{Id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> delete (@PathVariable Integer Id){
+		
+		service.delete(Id);
+		return ResponseEntity.noContent().build();
+	}	
+	
 	@RequestMapping(value="{Id}", method=RequestMethod.GET)
 	public ResponseEntity<Category> findById (@PathVariable Integer Id) {
 		
@@ -69,12 +76,5 @@ public class CategoryResources {
 		category = service.update(category);
 		return ResponseEntity.noContent().build();
 	}	
-	
-	@RequestMapping(value= "/{Id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Void> delete (@PathVariable Integer Id){
-		
-		service.delete(Id);
-		return ResponseEntity.noContent().build();
-	}	
-	
+
 }

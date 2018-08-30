@@ -24,25 +24,6 @@ public class CategoryService {
 	@Autowired
 	private CategoryRespository repository;
 
-	public Category findById(Integer id) {
-
-		Optional<Category> category = repository.findById(id);
-		return category.orElseThrow(() -> new ObjectNotFoundException(
-				"Not Found! " + "Id: " + id + ", Tipo: " + Category.class.getSimpleName()));
-	}
-
-	public Category insert(Category category) {
-
-		category.setId(null);
-		return repository.save(category);
-	}
-
-	public Category update(Category category) {
-		
-		findById(category.getId()); 
-		return repository.save(category);
-	}
-
 	public void delete(Integer id) {
 		
 		try {
@@ -53,6 +34,13 @@ public class CategoryService {
 		}
 	}
 	
+	public Category findById(Integer id) {
+
+		Optional<Category> category = repository.findById(id);
+		return category.orElseThrow(() -> new ObjectNotFoundException(
+				"Not Found! " + "Id: " + id + ", Tipo: " + Category.class.getSimpleName()));
+	}
+
 	public List<CategoryDTO> findAll () {
 		
 		List<Category> list = repository.findAll();
@@ -77,6 +65,21 @@ public class CategoryService {
 		return new Category(caregoriaDTO.getId(), caregoriaDTO.getName());
 	}
 	
-	
-	
+
+	public Category insert(Category category) {
+
+		category.setId(null);
+		return repository.save(category);
+	}
+
+	private void updateData(Category newCategory, Category category) {
+		newCategory.setName(category.getName());
+	}
+
+	public Category update(Category category) {
+		
+		Category newCategory = findById(category.getId());
+		updateData(newCategory, category);
+		return repository.save(newCategory);
+	}
 }

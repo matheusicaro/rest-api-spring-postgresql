@@ -40,7 +40,7 @@ public class Payment implements Serializable{
 	public Payment(Integer id, PaymentOptionENUM paymentOption, Order order) {
 		super();
 		this.id = id;
-		this.paymentOption = paymentOption.getCode();
+		this.paymentOption = (paymentOption == null) ? null : paymentOption.getCode();
 		this.order = order;
 	}
 

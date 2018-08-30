@@ -26,6 +26,12 @@ public class ClientResource {
 	@Autowired
 	ClientService service;
 	
+	@RequestMapping(value= "/{Id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> delete (@PathVariable Integer Id){
+		
+		service.delete(Id);
+		return ResponseEntity.noContent().build();
+	}	
 	
 	@RequestMapping(value="{Id}", method=RequestMethod.GET)
 	public ResponseEntity<?> findById (@PathVariable Integer Id) {
@@ -64,14 +70,4 @@ public class ClientResource {
 		client = service.update(client);
 		return ResponseEntity.noContent().build();
 	}	
-	
-	@RequestMapping(value= "/{Id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Void> delete (@PathVariable Integer Id){
-		
-		service.delete(Id);
-		return ResponseEntity.noContent().build();
-	}	
-	
-	
-	
 }
