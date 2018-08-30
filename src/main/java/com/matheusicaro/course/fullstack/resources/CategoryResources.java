@@ -63,8 +63,8 @@ public class CategoryResources {
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert (@RequestBody Category category){
 		
-		Category categorySaved = service.insert(category);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{Id}").buildAndExpand(categorySaved.getId()).toUri();
+		Category newCategory = service.insert(category);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{Id}").buildAndExpand(newCategory.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	

@@ -10,8 +10,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.matheusicaro.course.fullstack.domain.City;
 import com.matheusicaro.course.fullstack.domain.Client;
+import com.matheusicaro.course.fullstack.domain.HouseAddress;
 import com.matheusicaro.course.fullstack.dto.ClientDTO;
+import com.matheusicaro.course.fullstack.dto.NewClientDTO;
+import com.matheusicaro.course.fullstack.enums.ClientTypeENUM;
 import com.matheusicaro.course.fullstack.repositories.ClientRepository;
 import com.matheusicaro.course.fullstack.services.exceptions.DataIntegrityException;
 import com.matheusicaro.course.fullstack.services.exceptions.ObjectNotFoundException;
@@ -55,6 +59,24 @@ public class ClientService {
 	
 	public Client fromDTO(ClientDTO clientDTO) {
 		return new Client(clientDTO.getId(), clientDTO.getName(), clientDTO.getEmail(), null, null);
+	}
+	
+	public Client fromDTO(NewClientDTO newClientDTO) {
+		
+		Client newClient = new Client(null, newClientDTO.getName(), newClientDTO.getEmail(), newClientDTO.getCpf_cnpj(), ClientTypeENUM.toEnum(newClientDTO.getType()))	;
+		City city = new City(newClientDTO.getCityId(), null, null);
+		HouseAddress address = new HouseAddress(null, newClientDTO.getStreet(), newClientDTO.getStreetNumber(), newClientDTO.getComplement(), newClientDTO.getDistrict(),
+				newClientDTO.getCep(), newClient, city);
+		
+		newClient.getHouseAndress().add(address);
+		newClient.getPhones().add(newClientDTO.getPhone_1());
+		
+		if(newClientDTO.getPhone_2() != null)
+			newClient.getPhones().add(newClientDTO.getPhone_2());
+		if(newClientDTO.getPhone_3() != null)
+			newClient.getPhones().add(newClientDTO.getPhone_3());
+		
+		return newClient;
 	}
 		
 	public Client insert(Client client) {
