@@ -47,13 +47,23 @@ public class Order implements Serializable{
 				
 	public Order() {
 
-	}
+	}	
 	public Order(Integer id, Date orderDate, Client client, AddressHouse houseAddress) {
 		super();
 		this.id = id;
 		this.orderDate = orderDate;
 		this.client = client;
 		this.houseAddress = houseAddress;
+	}
+	
+	public double getTotalValue() {
+		double total = 0;
+		
+		for (OrderItem item : orderItems) {			
+			total += item.getTotalSub();
+		}
+		
+		return total;		
 	}
 
 	public Integer getId() {

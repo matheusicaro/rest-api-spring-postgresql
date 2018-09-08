@@ -29,6 +29,7 @@ public class ClientUpdateValidator implements ConstraintValidator<ClientInsert, 
 
 	}
 
+	@SuppressWarnings("restriction")
 	@Override
 	public boolean isValid(ClientNewDTO clientNewDTO, ConstraintValidatorContext context) {
 

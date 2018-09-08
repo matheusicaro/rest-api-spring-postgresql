@@ -3,10 +3,12 @@ package com.matheusicaro.course.fullstack.domain;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.matheusicaro.course.fullstack.enums.PaymentOptionENUM;
 
 
 @Entity
+@JsonTypeName("PaymentForCart")
 @Table(name="_PAYMENT_FOR_CART")
 public class PaymentForCart extends Payment {
 	private static final long serialVersionUID = 1L;

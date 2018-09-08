@@ -14,10 +14,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.matheusicaro.course.fullstack.enums.PaymentOptionENUM;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 @Table(name="_PAYMENT")
 public class Payment implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -56,8 +58,8 @@ public class Payment implements Serializable{
 		return PaymentOptionENUM.toEnum(paymentOption);
 	}
 
-	public void setPaymentOption(Integer paymentOption) {
-		this.paymentOption = paymentOption;
+	public void setPaymentOption(PaymentOptionENUM paymentOption) {
+		this.paymentOption = paymentOption.getCode();
 	}
 
 	public Order getOrder() {

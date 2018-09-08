@@ -34,6 +34,10 @@ public class OrderItem implements Serializable{
 		this.id_OrderItemPK.setOrder(order);
 	}
 	
+	public double getTotalSub() {
+		return (price - discount) * amount;
+	}
+	
 	public Product getProduct() {
 		return id_OrderItemPK.getProduct();
 	}
@@ -41,6 +45,14 @@ public class OrderItem implements Serializable{
 	@JsonIgnore
 	public Order getOrder() {
 		return id_OrderItemPK.getOrder();
+	}
+	
+	public void setProduct(Product product) {
+		id_OrderItemPK.setProduct(product);
+	}
+	
+	public void setOrder(Order order) {
+		id_OrderItemPK.setOrder(order);
 	}
 	
 	public OrderItemPK getId_OrderItemPK() {
