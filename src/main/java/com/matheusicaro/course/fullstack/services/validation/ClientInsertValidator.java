@@ -36,7 +36,7 @@ public class ClientInsertValidator implements ConstraintValidator<ClientInsert, 
 		}
  		
 		if (clientNewDTO.getType().equals(ClientTypeENUM.PESSOAJURIDICA.getCode()) && !BR.isValidCNPJ(clientNewDTO.getCpf_cnpj())) {
-			list.add(new FieldMessage("cpf_cnpj", "CNPJ Invalid"));
+			list.add(new FieldMessage("cpf_cnpj", "CNPJ inválido"));
 		}
  		
 		Client client = clientRepository.findByEmail(clientNewDTO.getEmail());

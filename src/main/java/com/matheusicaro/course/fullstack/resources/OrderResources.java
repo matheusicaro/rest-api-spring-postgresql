@@ -17,7 +17,7 @@ import com.matheusicaro.course.fullstack.domain.Order;
 import com.matheusicaro.course.fullstack.services.OrderService;
 
 @RestController()
-@RequestMapping(path="/orders")
+@RequestMapping(path="/pedidos")
 public class OrderResources {
 	
 	@Autowired

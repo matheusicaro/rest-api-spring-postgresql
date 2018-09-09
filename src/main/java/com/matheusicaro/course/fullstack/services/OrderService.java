@@ -33,6 +33,9 @@ public class OrderService {
 	@Autowired
 	private ProductService productService;
 	
+	@Autowired
+	private ClientService clientService;
+	
 	public Order findById(Integer id) {
 		
 		Optional<Order> order = orderRespository.findById(id);
@@ -44,6 +47,8 @@ public class OrderService {
 	public Order insert(Order order) {
 		order.setId(null);
 		order.setDate(new Date());
+		order.setClient(clientService.findById(order.getClient().getId()));
+
 		order.getPayment().setPaymentOption(PaymentOptionENUM.PENDING);
 		order.getPayment().setOrder(order);
 		if (order.getPayment() instanceof PaymentForTicket) {
@@ -55,7 +60,9 @@ public class OrderService {
 		
 		for (OrderItem item : order.getOrderItems()) {
 			item.setDiscount(0.0);
-			item.setPrice(productService.find(item.getProduct().getId()).getPrice());
+			
+			item.setProduct(productService.find(item.getProduct().getId()));
+			item.setPrice(item.getProduct().getPrice());
 			item.setOrder(order);
 		}
 		orderItemRespository.saveAll(order.getOrderItems());

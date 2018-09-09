@@ -23,7 +23,7 @@ import com.matheusicaro.course.fullstack.dto.ClientNewDTO;
 import com.matheusicaro.course.fullstack.services.ClientService;
 
 @RestController()
-@RequestMapping(path="/clients")
+@RequestMapping(path="/clientes")
 public class ClientResource {
 
 	@Autowired

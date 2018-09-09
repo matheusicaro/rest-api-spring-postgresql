@@ -22,7 +22,7 @@ import com.matheusicaro.course.fullstack.services.CategoryService;
 
 
 @RestController()
-@RequestMapping(path="/categories")
+@RequestMapping(path="/categorias")
 public class CategoryResources {
 
 	@Autowired

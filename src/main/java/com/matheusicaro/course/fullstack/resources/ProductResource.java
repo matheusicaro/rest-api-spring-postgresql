@@ -17,7 +17,7 @@ import com.matheusicaro.course.fullstack.resources.utils.URL;
 import com.matheusicaro.course.fullstack.services.ProductService;
 
 @RestController
-@RequestMapping(value="/products")
+@RequestMapping(value="/produtos")
 public class ProductResource {
 	
 	@Autowired
