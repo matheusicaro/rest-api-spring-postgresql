@@ -1,0 +1,24 @@
+{
+    "backend": {
+        "name": "Java",
+        "color": "#D32F2F",
+        "tags": [
+            "Spring",
+            "Maven",
+            "JPA",
+            "Hibernate",
+            "Java 8",
+            "Spring Boot",
+            "Spring Security",
+            "Spring Data"
+        ]
+    },
+    "database": {
+        "name": "PostgreSQL",
+        "color": "#326092",
+        "tags": [
+            "Jdbc4",
+            "Css3"
+        ]
+    }
+}
