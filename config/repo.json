@@ -1,8 +1,9 @@
 {
-    "backend": {
-        "name": "Java",
-        "color": "#D32F2F",
-        "tags": [
+   "backend":[
+      {
+         "name":"Java",
+         "color":"#D32F2F",
+         "tags":[
             "Spring",
             "Maven",
             "JPA",
@@ -11,14 +12,17 @@
             "Spring Boot",
             "Spring Security",
             "Spring Data"
-        ]
-    },
-    "database": {
-        "name": "PostgreSQL",
-        "color": "#326092",
-        "tags": [
+         ]
+      }
+   ],
+   "database":[
+      {
+         "name":"PostgreSQL",
+         "color":"#326092",
+         "tags":[
             "Jdbc4",
             "Css3"
-        ]
-    }
+         ]
+      }
+   ]
 }
