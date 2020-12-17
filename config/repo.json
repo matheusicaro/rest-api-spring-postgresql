@@ -2,18 +2,18 @@
   "profile": {
     "pt": {
       "kind": "Estudos",
-      "name": "Api Rest Com Spring E PostgreSQL Para Estudos",
-      "intro": "Rest API para estudos com Spring, Spring Security, Spring Data, JPA no banco de dados PostgreSQL. Este é o back-end da API REST para um projeto com boas práticas e integrações de uma API Rest. O aplicativo é de natureza educacional."
+      "name": "REST API  Com Spring E PostgreSQL Para Estudos",
+      "intro": "REST API para estudos com Spring, Spring Security, Spring Data, JPA no banco de dados PostgreSQL. Este é o back-end da API REST para um projeto com boas práticas e integrações de uma API Rest. O aplicativo é de natureza educacional."
     },
     "en": {
       "kind": "Studies",
       "name": "Rest API With Spring And PostgreSQL For Studies",
-      "intro": "Rest API For Studies with Spring, Spring Security, Spring Data, JPA in the PostgreSQL database. This is the REST API backend for a project with good practices and integrations of a Rest API. The application is educational in nature."
+      "intro": "REST API For Studies with Spring, Spring Security, Spring Data, JPA in the PostgreSQL database. This is the REST API backend for a project with good practices and integrations of a Rest API. The application is educational in nature."
     },
     "es": {
       "kind": "Estudios",
-      "name": "Rest Api Con Spring Y PostgreSQL Para Estudios",
-      "intro": "Rest API para estudios con Spring, Spring Security, Spring Data, JPA en la base de datos PostgreSQL. Este es el backend de la API REST para un proyecto con buenas prácticas e integraciones de una API Rest. La aplicación es de naturaleza educativa."
+      "name": "REST API Con Spring Y PostgreSQL Para Estudios",
+      "intro": "REST API para estudios con Spring, Spring Security, Spring Data, JPA en la base de datos PostgreSQL. Este es el backend de la API REST para un proyecto con buenas prácticas e integraciones de una API Rest. La aplicación es de naturaleza educativa."
     }
   },
   "stack": {
