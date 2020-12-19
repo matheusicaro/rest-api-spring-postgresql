@@ -7,7 +7,7 @@
     },
     "en": {
       "kind": "Studies",
-      "name": "Rest API With Spring And PostgreSQL For Studies",
+      "name": "REST API With Spring And PostgreSQL For Studies",
       "intro": "REST API For Studies with Spring, Spring Security, Spring Data, JPA in the PostgreSQL database. This is the REST API backend for a project with good practices and integrations of a Rest API. The application is educational in nature."
     },
     "es": {
