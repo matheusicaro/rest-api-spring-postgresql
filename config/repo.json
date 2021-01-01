@@ -5,6 +5,11 @@
       "name": "REST API  Com Spring E PostgreSQL Para Estudos",
       "intro": "REST API para estudos com Spring, Spring Security, Spring Data, JPA no banco de dados PostgreSQL. Este é o back-end da API REST para um projeto com boas práticas e integrações de uma API Rest. O aplicativo é de natureza educacional."
     },
+    "fr": {
+      "kind": "Études",
+      "name": "REST API  Avec Spring et PostgreSQL pour les études",
+      "intro": "REST API pour les études avec Spring, Spring Security, Spring Data, JPA dans la base de données PostgreSQL. C'est le back-end de l'API REST pour un projet avec les bonnes pratiques et les intégrations d'une API Rest. L'application est de nature éducative."
+    },
     "en": {
       "kind": "Studies",
       "name": "REST API With Spring And PostgreSQL For Studies",
@@ -20,25 +25,13 @@
     "backend": [
       {
         "name": "Java",
-        "tags": [
-          "Spring",
-          "Maven",
-          "JPA",
-          "Hibernate",
-          "Java 8",
-          "Spring Boot",
-          "Spring Security",
-          "Spring Data"
-        ]
+        "tags": ["Spring", "Maven", "JPA", "Hibernate", "Java 8", "Spring Boot", "Spring Security", "Spring Data"]
       }
     ],
     "database": [
       {
         "name": "PostgreSQL",
-        "tags": [
-          "Jdbc4",
-          "Css3"
-        ]
+        "tags": []
       }
     ]
   }
