@@ -1,4 +1,5 @@
 # Rest API For Studies with Spring, Spring Security, Spring Data, JPA
+[![license](https://img.shields.io/github/license/DAVFoundation/captain-n3m0.svg?style=flat-square)](https://github.com/matheusicaro/rest-api-spring-postgresql/blob/master/LICENSE)
 
 This is the REST API backend for a project of good practices and integrations of a Rest API.
 
