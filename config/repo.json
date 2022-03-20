@@ -21,6 +21,7 @@
       "intro": "REST API para estudios con Spring, Spring Security, Spring Data, JPA en la base de datos PostgreSQL. Este es el backend de la API REST para un proyecto con buenas prácticas e integraciones de una API Rest. La aplicación es de naturaleza educativa."
     }
   },
+  "tags": ["Java", "Spring", "Maven", "JPA", "Hibernate", "Java 8", "PostgreSQL", "Back-end"],
   "stack": {
     "backend": [
       {
